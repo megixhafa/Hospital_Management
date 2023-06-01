@@ -33,12 +33,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.usernameTxt = new System.Windows.Forms.TextBox();
             this.passwordTxt = new System.Windows.Forms.TextBox();
-            this.roleScroll = new System.Windows.Forms.ComboBox();
             this.loginBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -96,25 +94,12 @@
             this.label1.Text = "WELCOME";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.label2.Location = new System.Drawing.Point(326, 137);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 23);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "ROLE";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.label3.Location = new System.Drawing.Point(326, 195);
+            this.label3.Location = new System.Drawing.Point(325, 163);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(113, 23);
@@ -126,7 +111,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.label4.Location = new System.Drawing.Point(326, 259);
+            this.label4.Location = new System.Drawing.Point(325, 227);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(116, 23);
@@ -137,7 +122,7 @@
             // 
             this.usernameTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.usernameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.usernameTxt.Location = new System.Drawing.Point(472, 191);
+            this.usernameTxt.Location = new System.Drawing.Point(471, 159);
             this.usernameTxt.Margin = new System.Windows.Forms.Padding(4);
             this.usernameTxt.Name = "usernameTxt";
             this.usernameTxt.Size = new System.Drawing.Size(243, 31);
@@ -146,29 +131,12 @@
             // passwordTxt
             // 
             this.passwordTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.passwordTxt.Location = new System.Drawing.Point(472, 256);
+            this.passwordTxt.Location = new System.Drawing.Point(471, 224);
             this.passwordTxt.Margin = new System.Windows.Forms.Padding(4);
             this.passwordTxt.Name = "passwordTxt";
             this.passwordTxt.Size = new System.Drawing.Size(243, 31);
             this.passwordTxt.TabIndex = 5;
             this.passwordTxt.UseSystemPasswordChar = true;
-            // 
-            // roleScroll
-            // 
-            this.roleScroll.CausesValidation = false;
-            this.roleScroll.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.roleScroll.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.roleScroll.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.roleScroll.FormattingEnabled = true;
-            this.roleScroll.Items.AddRange(new object[] {
-            "Admin",
-            "Doctor",
-            "Receptionist"});
-            this.roleScroll.Location = new System.Drawing.Point(472, 133);
-            this.roleScroll.Margin = new System.Windows.Forms.Padding(4);
-            this.roleScroll.Name = "roleScroll";
-            this.roleScroll.Size = new System.Drawing.Size(243, 33);
-            this.roleScroll.TabIndex = 6;
             // 
             // loginBtn
             // 
@@ -177,7 +145,7 @@
             this.loginBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginBtn.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.loginBtn.ForeColor = System.Drawing.Color.White;
-            this.loginBtn.Location = new System.Drawing.Point(597, 325);
+            this.loginBtn.Location = new System.Drawing.Point(596, 293);
             this.loginBtn.Margin = new System.Windows.Forms.Padding(4);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(118, 36);
@@ -213,12 +181,10 @@
             this.ControlBox = false;
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.loginBtn);
-            this.Controls.Add(this.roleScroll);
             this.Controls.Add(this.passwordTxt);
             this.Controls.Add(this.usernameTxt);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -237,12 +203,10 @@
         #endregion
 
         private Panel panel1;
-        private Label label2;
         private Label label3;
         private Label label4;
         private TextBox usernameTxt;
         private TextBox passwordTxt;
-        private ComboBox roleScroll;
         private Button loginBtn;
         private PictureBox pictureBox1;
         private Label label1;
