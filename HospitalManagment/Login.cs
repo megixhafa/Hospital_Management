@@ -13,7 +13,7 @@ namespace HospitalManagment
             InitializeComponent();
         }
 
-        SqlConnection conn = new SqlConnection(@"Data Source=.\SQLEXPRESS; Initial Catalog=db_hospital_management; integrated security=SSPI;");
+        //SqlConnection conn = new SqlConnection(@"Data Source=.\SQLEXPRESS; Initial Catalog=db_hospital_management; integrated security=SSPI;");
         
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -27,45 +27,45 @@ namespace HospitalManagment
             username = usernameTxt.Text;
             password = passwordTxt.Text;
 
-            try
+            using (SqlConnection conn = DatabaseManager.GetConnection())
             {
-                String query = "SELECT * FROM user_account WHERE username = '" + username + "' AND password = '" + password + "'";
-                SqlDataAdapter sda = new SqlDataAdapter(query, conn);
 
-                DataTable dtable = new DataTable();
-                sda.Fill(dtable);
-
-                if(dtable.Rows.Count > 0)
+                try
                 {
+                    String query = "SELECT * FROM user_account WHERE username = '" + username + "' AND password = '" + password + "'";
+                    SqlDataAdapter sda = new SqlDataAdapter(query, conn);
 
-                    int roleId = Convert.ToInt32(dtable.Rows[0]["role_id"]);
+                    DataTable dtable = new DataTable();
+                    sda.Fill(dtable);
 
-                    role.RoleId = roleId;
+                    if (dtable.Rows.Count > 0)
+                    {
 
-                    username = usernameTxt.Text;
-                    password = passwordTxt.Text;
+                        int roleId = Convert.ToInt32(dtable.Rows[0]["role_id"]);
 
-                    //page that needed to be loaded next
-                    Home home = new Home();
-                    home.Show();
+                        role.RoleId = roleId;
 
-                    this.Hide();
+                        username = usernameTxt.Text;
+                        password = passwordTxt.Text;
+
+                        //page that needed to be loaded next
+                        Home home = new Home();
+                        home.Show();
+
+                        this.Hide();
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Invalid login details", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        usernameTxt.Clear();
+                        passwordTxt.Clear();
+                    }
                 }
-
-                else
+                catch
                 {
-                    MessageBox.Show("Invalid login details", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    usernameTxt.Clear();
-                    passwordTxt.Clear();
+                    MessageBox.Show("Error! Login not valid!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            catch
-            {
-                MessageBox.Show("Error! Login not valid!");
-            }
-            finally
-            {
-                conn.Close();
             }
         }
 

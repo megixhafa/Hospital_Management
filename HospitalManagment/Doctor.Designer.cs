@@ -110,7 +110,6 @@
             this.specializationTxt.Name = "specializationTxt";
             this.specializationTxt.Size = new System.Drawing.Size(243, 31);
             this.specializationTxt.TabIndex = 46;
-            this.specializationTxt.UseSystemPasswordChar = true;
             // 
             // label9
             // 
@@ -138,7 +137,6 @@
             this.experienceTxt.Name = "experienceTxt";
             this.experienceTxt.Size = new System.Drawing.Size(243, 31);
             this.experienceTxt.TabIndex = 50;
-            this.experienceTxt.UseSystemPasswordChar = true;
             // 
             // addressTxt
             // 
@@ -149,7 +147,6 @@
             this.addressTxt.Name = "addressTxt";
             this.addressTxt.Size = new System.Drawing.Size(243, 31);
             this.addressTxt.TabIndex = 40;
-            this.addressTxt.UseSystemPasswordChar = true;
             // 
             // label6
             // 
@@ -171,7 +168,6 @@
             this.numberTxt.Name = "numberTxt";
             this.numberTxt.Size = new System.Drawing.Size(243, 31);
             this.numberTxt.TabIndex = 38;
-            this.numberTxt.UseSystemPasswordChar = true;
             // 
             // label5
             // 
@@ -193,7 +189,6 @@
             this.emailTxt.Name = "emailTxt";
             this.emailTxt.Size = new System.Drawing.Size(243, 31);
             this.emailTxt.TabIndex = 36;
-            this.emailTxt.UseSystemPasswordChar = true;
             // 
             // lastnameTxt
             // 
@@ -249,6 +244,7 @@
             this.addbtn.TabIndex = 30;
             this.addbtn.Text = "ADD";
             this.addbtn.UseVisualStyleBackColor = true;
+            this.addbtn.Click += new System.EventHandler(this.addbtn_Click);
             // 
             // imageList1
             // 
@@ -268,6 +264,7 @@
             this.homeBtn.TabIndex = 0;
             this.homeBtn.Text = "HOME";
             this.homeBtn.UseVisualStyleBackColor = false;
+            this.homeBtn.Click += new System.EventHandler(this.homeBtn_Click);
             // 
             // panel2
             // 
@@ -366,6 +363,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Doctor";
             this.Text = "Doctor";
+            this.Load += new System.EventHandler(this.Doctor_Load);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);

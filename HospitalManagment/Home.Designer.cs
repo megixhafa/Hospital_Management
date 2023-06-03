@@ -45,9 +45,11 @@
             this.patientBTN = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.addbtn = new System.Windows.Forms.Button();
+            this.dgv = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -183,6 +185,7 @@
             this.doctorBtn.TabIndex = 1;
             this.doctorBtn.Text = "DOCTOR";
             this.doctorBtn.UseVisualStyleBackColor = true;
+            this.doctorBtn.Click += new System.EventHandler(this.doctorBtn_Click);
             // 
             // receptionBTN
             // 
@@ -225,6 +228,7 @@
             this.patientBTN.TabIndex = 2;
             this.patientBTN.Text = "PATIENT";
             this.patientBTN.UseVisualStyleBackColor = true;
+            this.patientBTN.Click += new System.EventHandler(this.patientBTN_Click);
             // 
             // imageList1
             // 
@@ -243,11 +247,22 @@
             this.addbtn.Text = "ADD";
             this.addbtn.UseVisualStyleBackColor = true;
             // 
+            // dgv
+            // 
+            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv.Location = new System.Drawing.Point(209, 119);
+            this.dgv.Name = "dgv";
+            this.dgv.RowHeadersWidth = 62;
+            this.dgv.RowTemplate.Height = 33;
+            this.dgv.Size = new System.Drawing.Size(1121, 401);
+            this.dgv.TabIndex = 5;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1352, 614);
+            this.Controls.Add(this.dgv);
             this.Controls.Add(this.addbtn);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -260,6 +275,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -281,5 +297,6 @@
         private TextBox searchTxt;
         private Button searchBtn;
         private Button cancelBtn;
+        private DataGridView dgv;
     }
 }
