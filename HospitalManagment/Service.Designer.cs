@@ -37,13 +37,16 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cancelBtn = new System.Windows.Forms.Button();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.addbtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.passwordTxt = new System.Windows.Forms.TextBox();
-            this.usernameTxt = new System.Windows.Forms.TextBox();
+            this.descriptionTxt = new System.Windows.Forms.TextBox();
+            this.serviceTxt = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.equipmentTxt = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -109,11 +112,29 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.panel2.Controls.Add(this.cancelBtn);
             this.panel2.Controls.Add(this.homeBtn);
             this.panel2.Location = new System.Drawing.Point(192, -3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1160, 103);
             this.panel2.TabIndex = 56;
+            // 
+            // cancelBtn
+            // 
+            this.cancelBtn.BackColor = System.Drawing.Color.Transparent;
+            this.cancelBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cancelBtn.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.cancelBtn.FlatAppearance.BorderSize = 0;
+            this.cancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cancelBtn.Font = new System.Drawing.Font("Microsoft JhengHei", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.cancelBtn.ForeColor = System.Drawing.Color.White;
+            this.cancelBtn.Location = new System.Drawing.Point(1127, 3);
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.Size = new System.Drawing.Size(30, 30);
+            this.cancelBtn.TabIndex = 62;
+            this.cancelBtn.Text = "X";
+            this.cancelBtn.UseVisualStyleBackColor = false;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // imageList2
             // 
@@ -125,12 +146,13 @@
             // 
             this.addbtn.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.addbtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.addbtn.Location = new System.Drawing.Point(403, 438);
+            this.addbtn.Location = new System.Drawing.Point(919, 429);
             this.addbtn.Name = "addbtn";
             this.addbtn.Size = new System.Drawing.Size(149, 50);
             this.addbtn.TabIndex = 57;
             this.addbtn.Text = "ADD";
             this.addbtn.UseVisualStyleBackColor = true;
+            this.addbtn.Click += new System.EventHandler(this.addbtn_Click);
             // 
             // panel1
             // 
@@ -143,57 +165,82 @@
             this.panel1.Size = new System.Drawing.Size(195, 668);
             this.panel1.TabIndex = 55;
             // 
-            // passwordTxt
+            // descriptionTxt
             // 
-            this.passwordTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.passwordTxt.Location = new System.Drawing.Point(309, 323);
-            this.passwordTxt.Margin = new System.Windows.Forms.Padding(4);
-            this.passwordTxt.Name = "passwordTxt";
-            this.passwordTxt.Size = new System.Drawing.Size(243, 31);
-            this.passwordTxt.TabIndex = 61;
-            this.passwordTxt.UseSystemPasswordChar = true;
+            this.descriptionTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.descriptionTxt.Location = new System.Drawing.Point(825, 237);
+            this.descriptionTxt.Margin = new System.Windows.Forms.Padding(4);
+            this.descriptionTxt.Multiline = true;
+            this.descriptionTxt.Name = "descriptionTxt";
+            this.descriptionTxt.Size = new System.Drawing.Size(243, 119);
+            this.descriptionTxt.TabIndex = 61;
             // 
-            // usernameTxt
+            // serviceTxt
             // 
-            this.usernameTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.usernameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.usernameTxt.Location = new System.Drawing.Point(309, 235);
-            this.usernameTxt.Margin = new System.Windows.Forms.Padding(4);
-            this.usernameTxt.Name = "usernameTxt";
-            this.usernameTxt.Size = new System.Drawing.Size(243, 31);
-            this.usernameTxt.TabIndex = 60;
+            this.serviceTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.serviceTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.serviceTxt.Location = new System.Drawing.Point(510, 237);
+            this.serviceTxt.Margin = new System.Windows.Forms.Padding(4);
+            this.serviceTxt.Name = "serviceTxt";
+            this.serviceTxt.Size = new System.Drawing.Size(243, 31);
+            this.serviceTxt.TabIndex = 60;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.label4.Location = new System.Drawing.Point(306, 296);
+            this.label4.Location = new System.Drawing.Point(822, 210);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 23);
+            this.label4.Size = new System.Drawing.Size(133, 23);
             this.label4.TabIndex = 59;
-            this.label4.Text = "EQUIPMENT";
+            this.label4.Text = "DESCRIPTION";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.label3.Location = new System.Drawing.Point(309, 208);
+            this.label3.Location = new System.Drawing.Point(510, 210);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(83, 23);
             this.label3.TabIndex = 58;
             this.label3.Text = "SERVICE";
             // 
+            // equipmentTxt
+            // 
+            this.equipmentTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.equipmentTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.equipmentTxt.Location = new System.Drawing.Point(510, 325);
+            this.equipmentTxt.Margin = new System.Windows.Forms.Padding(4);
+            this.equipmentTxt.Name = "equipmentTxt";
+            this.equipmentTxt.Size = new System.Drawing.Size(243, 31);
+            this.equipmentTxt.TabIndex = 65;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.label5.Location = new System.Drawing.Point(510, 298);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(120, 23);
+            this.label5.TabIndex = 63;
+            this.label5.Text = "EQUIPMENT";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
             // Service
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(710, 614);
-            this.Controls.Add(this.passwordTxt);
-            this.Controls.Add(this.usernameTxt);
+            this.ClientSize = new System.Drawing.Size(1346, 614);
+            this.Controls.Add(this.equipmentTxt);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.descriptionTxt);
+            this.Controls.Add(this.serviceTxt);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel2);
@@ -224,9 +271,12 @@
         private ImageList imageList2;
         private Button addbtn;
         private Panel panel1;
-        private TextBox passwordTxt;
-        private TextBox usernameTxt;
+        private TextBox descriptionTxt;
+        private TextBox serviceTxt;
         private Label label4;
         private Label label3;
+        private Button cancelBtn;
+        private TextBox equipmentTxt;
+        private Label label5;
     }
 }

@@ -93,5 +93,10 @@ namespace HospitalManagment
             doctor.Show();
             this.Hide();
         }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

@@ -51,6 +51,7 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.homeBtn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cancelBtn = new System.Windows.Forms.Button();
             this.logoutBtn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -198,7 +199,6 @@
             this.lastnameTxt.Name = "lastnameTxt";
             this.lastnameTxt.Size = new System.Drawing.Size(243, 31);
             this.lastnameTxt.TabIndex = 34;
-            this.lastnameTxt.UseSystemPasswordChar = true;
             // 
             // nameTxt
             // 
@@ -269,11 +269,29 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.panel2.Controls.Add(this.cancelBtn);
             this.panel2.Controls.Add(this.homeBtn);
             this.panel2.Location = new System.Drawing.Point(193, -1);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1160, 103);
             this.panel2.TabIndex = 29;
+            // 
+            // cancelBtn
+            // 
+            this.cancelBtn.BackColor = System.Drawing.Color.Transparent;
+            this.cancelBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cancelBtn.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.cancelBtn.FlatAppearance.BorderSize = 0;
+            this.cancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cancelBtn.Font = new System.Drawing.Font("Microsoft JhengHei", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.cancelBtn.ForeColor = System.Drawing.Color.White;
+            this.cancelBtn.Location = new System.Drawing.Point(1130, 0);
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.Size = new System.Drawing.Size(30, 30);
+            this.cancelBtn.TabIndex = 51;
+            this.cancelBtn.Text = "X";
+            this.cancelBtn.UseVisualStyleBackColor = false;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // logoutBtn
             // 
@@ -401,5 +419,6 @@
         private Label label1;
         private Label label2;
         private Panel panel1;
+        private Button cancelBtn;
     }
 }

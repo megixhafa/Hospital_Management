@@ -200,6 +200,7 @@
             this.receptionBTN.TabIndex = 1;
             this.receptionBTN.Text = "EMPLOYEE";
             this.receptionBTN.UseVisualStyleBackColor = true;
+            this.receptionBTN.Click += new System.EventHandler(this.receptionBTN_Click);
             // 
             // labBtn
             // 
@@ -214,6 +215,7 @@
             this.labBtn.TabIndex = 3;
             this.labBtn.Text = "LABORATORY";
             this.labBtn.UseVisualStyleBackColor = true;
+            this.labBtn.Click += new System.EventHandler(this.labBtn_Click);
             // 
             // patientBTN
             // 
@@ -246,6 +248,7 @@
             this.addbtn.TabIndex = 4;
             this.addbtn.Text = "ADD";
             this.addbtn.UseVisualStyleBackColor = true;
+            this.addbtn.Click += new System.EventHandler(this.addbtn_Click);
             // 
             // dgv
             // 

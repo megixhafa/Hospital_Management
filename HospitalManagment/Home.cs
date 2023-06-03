@@ -1,4 +1,5 @@
 ﻿using HospitalManagment.Models;
+using Microsoft.VisualBasic.ApplicationServices;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq.Expressions;
@@ -29,40 +30,25 @@ namespace HospitalManagment
                     labBtn.Enabled = true;
                     equipmentBtn.Enabled = true;
 
-                    try
-                    {
-                        String query = "select * from ";
-                        SqlDataAdapter sda = new SqlDataAdapter(query, conn);
+                    ShowDoctor();
 
-                        DataTable dtable = new DataTable();
-                        sda.Fill(dtable);
-
-                        if (dtable.Rows.Count > 0)
-                        {
-                            
-                        }
-                    }
-                    catch
-                    {
-
-                    }
                 }
 
                 else if (roleId == 2)
                 {
                     labBtn.Enabled = true;
-                    equipmentBtn.Enabled = true;
+
+                    ShowBookings();
                 }
+
                 else if (roleId == 3)
                 {
                     patientBTN.Enabled = true;
+                    equipmentBtn.Enabled = true;
+                    labBtn.Enabled = true;
+                    ShowPatient();
                 }
             }
-        }
-
-        private void equipmentBtn_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -90,6 +76,11 @@ namespace HospitalManagment
 
         }
 
+        private void equipmentBtn_Click(object sender, EventArgs e)
+        {
+            ShowEquipment();
+        }
+
         private void doctorBtn_Click(object sender, EventArgs e)
         {
             ShowDoctor();
@@ -98,6 +89,16 @@ namespace HospitalManagment
         private void patientBTN_Click(object sender, EventArgs e)
         {
             ShowPatient();
+        }
+
+        private void receptionBTN_Click(object sender, EventArgs e)
+        {
+            ShowReceptionist();
+        }
+
+        private void labBtn_Click(object sender, EventArgs e)
+        {
+            ShowBookings();
         }
 
         private void ShowDoctor()
@@ -109,6 +110,23 @@ namespace HospitalManagment
                 SqlCommand command = new SqlCommand(Query, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(command);
                 DataTable dt = new DataTable();
+                dt.ExtendedProperties["Table"] = "doctor";
+                sda.Fill(dt);
+                dgv.DataSource = dt;
+                conn.Close();
+            }
+        }
+
+        private void ShowEquipment()
+        {
+            using (SqlConnection conn = DatabaseManager.GetConnection())
+            {
+                conn.Open();
+                string Query = "SELECT * from equipment";
+                SqlCommand command = new SqlCommand(Query, conn);
+                SqlDataAdapter sda = new SqlDataAdapter(command);
+                DataTable dt = new DataTable();
+                dt.ExtendedProperties["Table"] = "equipment";
                 sda.Fill(dt);
                 dgv.DataSource = dt;
                 conn.Close();
@@ -124,10 +142,105 @@ namespace HospitalManagment
                 SqlCommand command = new SqlCommand(Query, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(command);
                 DataTable dt = new DataTable();
+                dt.ExtendedProperties["Table"] = "patient";
                 sda.Fill(dt);
                 dgv.DataSource = dt;
                 conn.Close();
             }
         }
+
+        private void ShowReceptionist()
+        {
+            using (SqlConnection conn = DatabaseManager.GetConnection())
+            {
+                conn.Open();
+                string Query = "SELECT u.name, u.last_name, u.gender, u.number, u.email, u.address\r\nFROM employee e\r\nJOIN [user] u ON e.user_id = u.id;\r\n";
+                SqlCommand command = new SqlCommand(Query, conn);
+                SqlDataAdapter sda = new SqlDataAdapter(command);
+                DataTable dt = new DataTable();
+                dt.ExtendedProperties["Table"] = "employee";
+                sda.Fill(dt);
+                dgv.DataSource = dt;
+                conn.Close();
+            }
+        }
+
+        private void ShowBookings()
+        {
+            using (SqlConnection conn = DatabaseManager.GetConnection())
+            {
+                conn.Open();
+                string Query = "SELECT patient.name AS patient_name, patient.last_name AS patient_last_name, patient.gender AS patient_gender, " +
+                                "doctor.name AS doctor_name, doctor.last_name AS doctor_last_name, doctor.gender AS doctor_gender, equipment.name AS equipment_name, " +
+                                "service.name AS service_name " +
+                                "FROM booking " +
+                                "INNER JOIN [user] AS patient ON booking.patient_id = patient.id " +
+                                "INNER JOIN [user] AS doctor ON booking.doctor_id = doctor.id " +
+                                "INNER JOIN equipment ON booking.equipment_id = equipment.id " +
+                                "INNER JOIN service ON booking.service_id = service.id;";
+                SqlCommand command = new SqlCommand(Query, conn);
+                SqlDataAdapter sda = new SqlDataAdapter(command);
+                DataTable dt = new DataTable();
+                dt.ExtendedProperties["Table"] = "booking";
+                sda.Fill(dt);
+                dgv.DataSource = dt;
+                conn.Close();
+            }
+        }
+
+        private void addbtn_Click(object sender, EventArgs e)
+        {
+
+            string selectedTableName = GetSelectedTableName();
+
+            // Perform the appropriate action based on the selected table
+            switch (selectedTableName)
+            {
+                case "doctor":
+                    Doctor doctor = new Doctor();
+                    doctor.Show();
+                    break;
+
+                case "patient":
+                    Patient patient = new Patient();
+                    patient.Show();
+                    break;
+
+                case "employee":
+                    Employee employee = new Employee();
+                    employee.Show();
+                    break;
+
+                case "equipment":
+                    Service service = new Service();
+                    service.Show();
+                    break;
+
+                case "booking":
+                    Booking booking = new Booking();
+                    booking.Show();
+                    break;
+
+                default:
+                    // Handle the case where no table is selected or unsupported table
+                    MessageBox.Show("No table selected or unsupported table.");
+                    break;
+            }
+        }
+
+        private string GetSelectedTableName()
+        {
+            if (dgv.DataSource is DataTable dataTable && dataTable.ExtendedProperties.ContainsKey("Table"))
+            {
+                // Retrieve the table name from the extended properties of the DataTable
+                return dataTable.ExtendedProperties["Table"].ToString();
+            }
+            else
+            {
+                // Handle the case where the DataSource is not a DataTable or table name is not found
+                return string.Empty;
+            }
+        }
+
     }
 }

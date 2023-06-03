@@ -49,19 +49,9 @@
             this.addressTxt = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.label7 = new System.Windows.Forms.Label();
-            this.notesTxt = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.serviceTxt = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label10 = new System.Windows.Forms.Label();
             this.roleScroll = new System.Windows.Forms.ComboBox();
-            this.equipmentTxt = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -137,6 +127,7 @@
             this.homeBtn.TabIndex = 0;
             this.homeBtn.Text = "HOME";
             this.homeBtn.UseVisualStyleBackColor = false;
+            this.homeBtn.Click += new System.EventHandler(this.homeBtn_Click);
             // 
             // imageList1
             // 
@@ -148,17 +139,18 @@
             // 
             this.addbtn.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.addbtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.addbtn.Location = new System.Drawing.Point(1103, 529);
+            this.addbtn.Location = new System.Drawing.Point(927, 493);
             this.addbtn.Name = "addbtn";
             this.addbtn.Size = new System.Drawing.Size(149, 50);
             this.addbtn.TabIndex = 7;
             this.addbtn.Text = "ADD";
             this.addbtn.UseVisualStyleBackColor = true;
+            this.addbtn.Click += new System.EventHandler(this.addbtn_Click);
             // 
             // lastnameTxt
             // 
             this.lastnameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.lastnameTxt.Location = new System.Drawing.Point(311, 232);
+            this.lastnameTxt.Location = new System.Drawing.Point(481, 298);
             this.lastnameTxt.Margin = new System.Windows.Forms.Padding(4);
             this.lastnameTxt.Name = "lastnameTxt";
             this.lastnameTxt.Size = new System.Drawing.Size(243, 31);
@@ -169,7 +161,7 @@
             // 
             this.nameTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.nameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.nameTxt.Location = new System.Drawing.Point(309, 157);
+            this.nameTxt.Location = new System.Drawing.Point(479, 223);
             this.nameTxt.Margin = new System.Windows.Forms.Padding(4);
             this.nameTxt.Name = "nameTxt";
             this.nameTxt.Size = new System.Drawing.Size(243, 31);
@@ -180,7 +172,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.label4.Location = new System.Drawing.Point(309, 205);
+            this.label4.Location = new System.Drawing.Point(479, 271);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(115, 23);
@@ -193,7 +185,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.label3.Location = new System.Drawing.Point(309, 130);
+            this.label3.Location = new System.Drawing.Point(479, 196);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 23);
@@ -203,7 +195,7 @@
             // emailTxt
             // 
             this.emailTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.emailTxt.Location = new System.Drawing.Point(663, 232);
+            this.emailTxt.Location = new System.Drawing.Point(833, 298);
             this.emailTxt.Margin = new System.Windows.Forms.Padding(4);
             this.emailTxt.Name = "emailTxt";
             this.emailTxt.Size = new System.Drawing.Size(243, 31);
@@ -215,7 +207,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.label2.Location = new System.Drawing.Point(661, 205);
+            this.label2.Location = new System.Drawing.Point(831, 271);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 23);
@@ -225,7 +217,7 @@
             // numberTxt
             // 
             this.numberTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.numberTxt.Location = new System.Drawing.Point(663, 157);
+            this.numberTxt.Location = new System.Drawing.Point(833, 223);
             this.numberTxt.Margin = new System.Windows.Forms.Padding(4);
             this.numberTxt.Name = "numberTxt";
             this.numberTxt.Size = new System.Drawing.Size(243, 31);
@@ -237,7 +229,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.label5.Location = new System.Drawing.Point(661, 130);
+            this.label5.Location = new System.Drawing.Point(831, 196);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 23);
@@ -247,7 +239,7 @@
             // addressTxt
             // 
             this.addressTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.addressTxt.Location = new System.Drawing.Point(663, 303);
+            this.addressTxt.Location = new System.Drawing.Point(833, 369);
             this.addressTxt.Margin = new System.Windows.Forms.Padding(4);
             this.addressTxt.Multiline = true;
             this.addressTxt.Name = "addressTxt";
@@ -260,7 +252,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.label6.Location = new System.Drawing.Point(663, 276);
+            this.label6.Location = new System.Drawing.Point(833, 342);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(95, 23);
@@ -273,81 +265,12 @@
             this.imageList2.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // dateTimePicker
-            // 
-            this.dateTimePicker.CalendarFont = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dateTimePicker.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.dateTimePicker.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.dateTimePicker.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker.Location = new System.Drawing.Point(1011, 156);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(241, 31);
-            this.dateTimePicker.TabIndex = 18;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.label7.Location = new System.Drawing.Point(1011, 130);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(190, 23);
-            this.label7.TabIndex = 19;
-            this.label7.Text = "RESERVATION DATE";
-            // 
-            // notesTxt
-            // 
-            this.notesTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.notesTxt.Location = new System.Drawing.Point(309, 379);
-            this.notesTxt.Margin = new System.Windows.Forms.Padding(4);
-            this.notesTxt.Multiline = true;
-            this.notesTxt.Name = "notesTxt";
-            this.notesTxt.Size = new System.Drawing.Size(597, 200);
-            this.notesTxt.TabIndex = 21;
-            this.notesTxt.UseSystemPasswordChar = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.label8.Location = new System.Drawing.Point(309, 352);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(72, 23);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "NOTES";
-            // 
-            // serviceTxt
-            // 
-            this.serviceTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.serviceTxt.Location = new System.Drawing.Point(1011, 232);
-            this.serviceTxt.Margin = new System.Windows.Forms.Padding(4);
-            this.serviceTxt.Name = "serviceTxt";
-            this.serviceTxt.Size = new System.Drawing.Size(243, 31);
-            this.serviceTxt.TabIndex = 23;
-            this.serviceTxt.UseSystemPasswordChar = true;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.label9.Location = new System.Drawing.Point(1009, 205);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(83, 23);
-            this.label9.TabIndex = 22;
-            this.label9.Text = "SERVICE";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.label10.Location = new System.Drawing.Point(309, 276);
+            this.label10.Location = new System.Drawing.Point(479, 342);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(85, 23);
@@ -365,79 +288,19 @@
             "Female",
             "Male",
             "Other"});
-            this.roleScroll.Location = new System.Drawing.Point(311, 303);
+            this.roleScroll.Location = new System.Drawing.Point(481, 369);
             this.roleScroll.Margin = new System.Windows.Forms.Padding(4);
             this.roleScroll.Name = "roleScroll";
             this.roleScroll.Size = new System.Drawing.Size(243, 33);
             this.roleScroll.TabIndex = 25;
-            // 
-            // equipmentTxt
-            // 
-            this.equipmentTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.equipmentTxt.Location = new System.Drawing.Point(1011, 303);
-            this.equipmentTxt.Margin = new System.Windows.Forms.Padding(4);
-            this.equipmentTxt.Name = "equipmentTxt";
-            this.equipmentTxt.Size = new System.Drawing.Size(243, 31);
-            this.equipmentTxt.TabIndex = 27;
-            this.equipmentTxt.UseSystemPasswordChar = true;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.label11.Location = new System.Drawing.Point(1009, 276);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(120, 23);
-            this.label11.TabIndex = 26;
-            this.label11.Text = "EQUIPMENT";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.label12.Location = new System.Drawing.Point(1009, 352);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(94, 23);
-            this.label12.TabIndex = 28;
-            this.label12.Text = "PRIORITY";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.CausesValidation = false;
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.comboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Yes",
-            "No"});
-            this.comboBox1.Location = new System.Drawing.Point(1011, 379);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(243, 33);
-            this.comboBox1.TabIndex = 29;
             // 
             // Patient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1352, 614);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.equipmentTxt);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.roleScroll);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.serviceTxt);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.notesTxt);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.addressTxt);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.numberTxt);
@@ -485,18 +348,8 @@
         private TextBox addressTxt;
         private Label label6;
         private ImageList imageList2;
-        private DateTimePicker dateTimePicker;
-        private Label label7;
-        private TextBox notesTxt;
-        private Label label8;
-        private TextBox serviceTxt;
-        private Label label9;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Label label10;
         private ComboBox roleScroll;
-        private TextBox equipmentTxt;
-        private Label label11;
-        private Label label12;
-        private ComboBox comboBox1;
     }
 }
