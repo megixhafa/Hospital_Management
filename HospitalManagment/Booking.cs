@@ -119,12 +119,10 @@ namespace HospitalManagment
                 {
                     DateTime startTime = dateTimePicker.Value;
                     TimeSpan selectedTime = startTime.TimeOfDay;
-                    string hourMinute = selectedTime.ToString("hh:mm");
+                    string hourMinute = selectedTime.ToString("hh\\:mm");
 
-                    MessageBox.Show("" + selectedTime); 
-                    int minutesToAdd = (int)numericUpDown1.Value;
+                    var minutesToAdd = (int)numericUpDown1.Value;
                     DateTime endTime = startTime.AddMinutes(minutesToAdd);
-                    MessageBox.Show("" + endTime);
 
                     SqlCommand doctor = new SqlCommand("SELECT d.id FROM doctor d INNER JOIN [user] u ON u.id = d.user_id WHERE u.name = @name", conn);
                     doctor.Transaction = transaction;

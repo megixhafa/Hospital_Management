@@ -17,10 +17,10 @@ namespace HospitalManagment
 {
     public partial class EditBooking : Form
     {
-        public EditBooking(string patientName, string patientLastName, string doctorName, string doctorLastName, string duration, string startTime)
+        public EditBooking(int id, string patientName, string patientLastName, string doctorName, string doctorLastName, string duration, string startTime)
         {
             InitializeComponent();
-
+            bookingId.Text = id.ToString();
             nameTxt.Text = patientName;
             lastnameTxt.Text = patientLastName;
             doctorTxt.Text = doctorName;
@@ -47,7 +47,24 @@ namespace HospitalManagment
             {
                 conn.Open();
 
-                SqlCommand command = new SqlCommand("SELECT user.email FROM user JOIN patient ON patient.user_id = user.id WHERE user.name = @name", conn);
+                SqlCommand updateCmd = new SqlCommand(
+                    "UPDATE booking " +
+                    "SET start_time = @startTime " +
+                    "WHERE booking.id = @id", conn);
+                updateCmd.Parameters.AddWithValue("@startTime", startTimeTxt.Text);
+                updateCmd.Parameters.AddWithValue("@id", bookingId.Text);
+                int rowsAffected = updateCmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Update Successful!");
+                }
+                else
+                {
+                    MessageBox.Show("Error!");
+                }
+
+                SqlCommand command = new SqlCommand("SELECT [user].email FROM [user] JOIN patient ON patient.user_id = [user].id WHERE [user].name = @name", conn);
                 command.Parameters.AddWithValue("@name", name);
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -70,7 +87,7 @@ namespace HospitalManagment
                         mail.To.Add(email);
                         mail.Subject = "";
                         mail.IsBodyHtml = false;
-                        string body = "Your appointment has been changed to the following date: " + "" + Environment.NewLine;
+                        string body = "Your appointment has been changed to the following date: " + startTimeTxt.Text + Environment.NewLine;
                         mail.Body = body;
 
                         smtpServer.Send(mail);
@@ -84,6 +101,12 @@ namespace HospitalManagment
                 reader.Close();
                 conn.Close();
             }
-        }         
+        }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+        }
     }
 }

@@ -170,7 +170,8 @@ namespace HospitalManagment
             using (SqlConnection conn = DatabaseManager.GetConnection())
             {
                 conn.Open();
-                string Query = "SELECT patient_user.name AS patient_name, " +
+                string Query = "SELECT booking.id AS ID, " +
+                    "patient_user.name AS patient_name, " +
                     "patient_user.last_name AS patient_last_name, " +
                     "patient_user.gender AS patient_gender, " +
                     "doctor_user.name AS doctor_name, " +
@@ -267,6 +268,7 @@ namespace HospitalManagment
                 DataGridViewRow selectedRow = dgv.Rows[e.RowIndex];
 
                 // Extract the data from the selected row
+                int id = Convert.ToInt32(selectedRow.Cells["ID"].Value.ToString());
                 string patientName = selectedRow.Cells["patient_name"].Value.ToString();
                 string patientLastName = selectedRow.Cells["patient_last_name"].Value.ToString();
                 string doctorName = selectedRow.Cells["doctor_name"].Value.ToString();
@@ -277,7 +279,7 @@ namespace HospitalManagment
                 // Extract other fields as needed
 
                 // Create an instance of the external form and pass the retrieved data
-                EditBooking editBooking = new EditBooking(patientName, patientLastName, doctorName, doctorLastName, duration, startTime);
+                EditBooking editBooking = new EditBooking(id, patientName, patientLastName, doctorName, doctorLastName, duration, startTime);
                 editBooking.ShowDialog();
             }
         }

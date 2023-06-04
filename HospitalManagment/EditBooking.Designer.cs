@@ -53,6 +53,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.updateBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.bookingId = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -79,6 +80,7 @@
             this.cancelBtn.TabIndex = 51;
             this.cancelBtn.Text = "X";
             this.cancelBtn.UseVisualStyleBackColor = false;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // logoutBtn
             // 
@@ -135,6 +137,7 @@
             this.durationTxt.Location = new System.Drawing.Point(1010, 235);
             this.durationTxt.Margin = new System.Windows.Forms.Padding(4);
             this.durationTxt.Name = "durationTxt";
+            this.durationTxt.ReadOnly = true;
             this.durationTxt.Size = new System.Drawing.Size(243, 31);
             this.durationTxt.TabIndex = 65;
             // 
@@ -179,6 +182,7 @@
             this.doctorTxt.Location = new System.Drawing.Point(662, 235);
             this.doctorTxt.Margin = new System.Windows.Forms.Padding(4);
             this.doctorTxt.Name = "doctorTxt";
+            this.doctorTxt.ReadOnly = true;
             this.doctorTxt.Size = new System.Drawing.Size(243, 31);
             this.doctorTxt.TabIndex = 61;
             // 
@@ -200,6 +204,7 @@
             this.doctorLastTxt.Location = new System.Drawing.Point(662, 310);
             this.doctorLastTxt.Margin = new System.Windows.Forms.Padding(4);
             this.doctorLastTxt.Name = "doctorLastTxt";
+            this.doctorLastTxt.ReadOnly = true;
             this.doctorLastTxt.Size = new System.Drawing.Size(243, 31);
             this.doctorLastTxt.TabIndex = 59;
             // 
@@ -209,6 +214,7 @@
             this.lastnameTxt.Location = new System.Drawing.Point(310, 310);
             this.lastnameTxt.Margin = new System.Windows.Forms.Padding(4);
             this.lastnameTxt.Name = "lastnameTxt";
+            this.lastnameTxt.ReadOnly = true;
             this.lastnameTxt.Size = new System.Drawing.Size(243, 31);
             this.lastnameTxt.TabIndex = 57;
             // 
@@ -219,6 +225,7 @@
             this.nameTxt.Location = new System.Drawing.Point(308, 235);
             this.nameTxt.Margin = new System.Windows.Forms.Padding(4);
             this.nameTxt.Name = "nameTxt";
+            this.nameTxt.ReadOnly = true;
             this.nameTxt.Size = new System.Drawing.Size(243, 31);
             this.nameTxt.TabIndex = 56;
             // 
@@ -298,12 +305,23 @@
             this.panel1.Size = new System.Drawing.Size(195, 668);
             this.panel1.TabIndex = 51;
             // 
+            // bookingId
+            // 
+            this.bookingId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.bookingId.Location = new System.Drawing.Point(201, 113);
+            this.bookingId.Margin = new System.Windows.Forms.Padding(4);
+            this.bookingId.Name = "bookingId";
+            this.bookingId.ReadOnly = true;
+            this.bookingId.Size = new System.Drawing.Size(35, 31);
+            this.bookingId.TabIndex = 70;
+            // 
             // EditBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1352, 601);
             this.ControlBox = false;
+            this.Controls.Add(this.bookingId);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.durationTxt);
             this.Controls.Add(this.startTimeTxt);
@@ -357,5 +375,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Button updateBtn;
         private Panel panel1;
+        private TextBox bookingId;
     }
 }
