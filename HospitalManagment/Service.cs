@@ -45,11 +45,14 @@ namespace HospitalManagment
                 {
                     // Insert data into the user table and retrieve the generated ID
                     SqlCommand serviceCmd = new SqlCommand(
-                        "INSERT INTO service (name, description) " +
-                        "VALUES (@name, @description);", conn);
+                        "INSERT INTO service (name, description, duration) " +
+                        "VALUES (@name, @description, @duration);", conn);
                     serviceCmd.Transaction = transaction;
                     serviceCmd.Parameters.AddWithValue("@name", serviceTxt.Text);
                     serviceCmd.Parameters.AddWithValue("@description", descriptionTxt.Text);
+                    serviceCmd.Parameters.AddWithValue("@duration", durationCtrl.Value);
+
+                    serviceCmd.ExecuteNonQuery();
 
                     // Insert data into the doctor table
                     SqlCommand equipmentCmd = new SqlCommand(

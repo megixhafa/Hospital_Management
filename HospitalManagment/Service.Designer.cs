@@ -47,9 +47,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.equipmentTxt = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.durationCtrl = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.durationCtrl)).BeginInit();
             this.SuspendLayout();
             // 
             // logoutBtn
@@ -146,7 +149,7 @@
             // 
             this.addbtn.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.addbtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.addbtn.Location = new System.Drawing.Point(919, 429);
+            this.addbtn.Location = new System.Drawing.Point(919, 498);
             this.addbtn.Name = "addbtn";
             this.addbtn.Size = new System.Drawing.Size(149, 50);
             this.addbtn.TabIndex = 57;
@@ -172,7 +175,7 @@
             this.descriptionTxt.Margin = new System.Windows.Forms.Padding(4);
             this.descriptionTxt.Multiline = true;
             this.descriptionTxt.Name = "descriptionTxt";
-            this.descriptionTxt.Size = new System.Drawing.Size(243, 119);
+            this.descriptionTxt.Size = new System.Drawing.Size(243, 208);
             this.descriptionTxt.TabIndex = 61;
             // 
             // serviceTxt
@@ -232,11 +235,32 @@
             this.label5.Text = "EQUIPMENT";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.label2.Location = new System.Drawing.Point(510, 387);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(110, 23);
+            this.label2.TabIndex = 66;
+            this.label2.Text = "DURATION";
+            // 
+            // durationCtrl
+            // 
+            this.durationCtrl.Location = new System.Drawing.Point(510, 414);
+            this.durationCtrl.Name = "durationCtrl";
+            this.durationCtrl.Size = new System.Drawing.Size(243, 31);
+            this.durationCtrl.TabIndex = 67;
+            // 
             // Service
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1346, 614);
+            this.Controls.Add(this.durationCtrl);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.equipmentTxt);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.descriptionTxt);
@@ -254,6 +278,7 @@
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.durationCtrl)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -278,5 +303,7 @@
         private Button cancelBtn;
         private TextBox equipmentTxt;
         private Label label5;
+        private Label label2;
+        private NumericUpDown durationCtrl;
     }
 }

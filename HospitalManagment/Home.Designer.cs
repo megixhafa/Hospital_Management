@@ -77,6 +77,7 @@
             this.logoutBtn.TabIndex = 3;
             this.logoutBtn.Text = "LOG OUT";
             this.logoutBtn.UseVisualStyleBackColor = true;
+            this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
             // 
             // pictureBox1
             // 
@@ -213,7 +214,7 @@
             this.labBtn.Name = "labBtn";
             this.labBtn.Size = new System.Drawing.Size(149, 50);
             this.labBtn.TabIndex = 3;
-            this.labBtn.Text = "LABORATORY";
+            this.labBtn.Text = "BOOKING";
             this.labBtn.UseVisualStyleBackColor = true;
             this.labBtn.Click += new System.EventHandler(this.labBtn_Click);
             // 
@@ -252,13 +253,19 @@
             // 
             // dgv
             // 
+            this.dgv.BackgroundColor = System.Drawing.Color.Azure;
+            this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv.GridColor = System.Drawing.Color.Azure;
             this.dgv.Location = new System.Drawing.Point(209, 119);
             this.dgv.Name = "dgv";
             this.dgv.RowHeadersWidth = 62;
             this.dgv.RowTemplate.Height = 33;
             this.dgv.Size = new System.Drawing.Size(1121, 401);
             this.dgv.TabIndex = 5;
+            this.dgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentClick);
+            this.dgv.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentDoubleClick);
+            this.dgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellDoubleClick);
             // 
             // Home
             // 

@@ -11,7 +11,7 @@ namespace HospitalManagment
         public Home()
         {
             InitializeComponent();
-            ShowDoctor();
+            ShowBookings();
         }
 
 
@@ -170,14 +170,23 @@ namespace HospitalManagment
             using (SqlConnection conn = DatabaseManager.GetConnection())
             {
                 conn.Open();
-                string Query = "SELECT patient.name AS patient_name, patient.last_name AS patient_last_name, patient.gender AS patient_gender, " +
-                                "doctor.name AS doctor_name, doctor.last_name AS doctor_last_name, doctor.gender AS doctor_gender, equipment.name AS equipment_name, " +
-                                "service.name AS service_name " +
-                                "FROM booking " +
-                                "INNER JOIN [user] AS patient ON booking.patient_id = patient.id " +
-                                "INNER JOIN [user] AS doctor ON booking.doctor_id = doctor.id " +
-                                "INNER JOIN equipment ON booking.equipment_id = equipment.id " +
-                                "INNER JOIN service ON booking.service_id = service.id;";
+                string Query = "SELECT patient_user.name AS patient_name, " +
+                    "patient_user.last_name AS patient_last_name, " +
+                    "patient_user.gender AS patient_gender, " +
+                    "doctor_user.name AS doctor_name, " +
+                    "doctor_user.last_name AS doctor_last_name, " +
+                    "equipment.name AS equipment_name, " +
+                    "service.name AS service_name, " +
+                    "service.duration AS duration, " +
+                    "booking.start_time, " +
+                    "booking.end_time " +
+                    "FROM booking " +
+                    "INNER JOIN patient ON booking.patient_id = patient.id " +
+                    "INNER JOIN doctor ON booking.doctor_id = doctor.id " +
+                    "INNER JOIN equipment ON booking.equipment_id = equipment.id " +
+                    "INNER JOIN service ON booking.service_id = service.id " +
+                    "INNER JOIN [user] AS patient_user ON patient.user_id = patient_user.id " +
+                    "INNER JOIN [user] AS doctor_user ON doctor.user_id = doctor_user.id;";
                 SqlCommand command = new SqlCommand(Query, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(command);
                 DataTable dt = new DataTable();
@@ -242,5 +251,45 @@ namespace HospitalManagment
             }
         }
 
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            LoginForm login = new LoginForm();
+            login.Show();
+        }
+
+
+        private void dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                // Retrieve the selected row
+                DataGridViewRow selectedRow = dgv.Rows[e.RowIndex];
+
+                // Extract the data from the selected row
+                string patientName = selectedRow.Cells["patient_name"].Value.ToString();
+                string patientLastName = selectedRow.Cells["patient_last_name"].Value.ToString();
+                string doctorName = selectedRow.Cells["doctor_name"].Value.ToString();
+                string doctorLastName = selectedRow.Cells["doctor_last_name"].Value.ToString();
+                string duration = selectedRow.Cells["duration"].Value.ToString();
+                string startTime = selectedRow.Cells["start_time"].Value.ToString();
+
+                // Extract other fields as needed
+
+                // Create an instance of the external form and pass the retrieved data
+                EditBooking editBooking = new EditBooking(patientName, patientLastName, doctorName, doctorLastName, duration, startTime);
+                editBooking.ShowDialog();
+            }
+        }
+
+        private void dgv_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

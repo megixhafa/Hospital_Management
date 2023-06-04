@@ -6,9 +6,12 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace HospitalManagment
 {
@@ -28,6 +31,9 @@ namespace HospitalManagment
 
                 try
                 {
+                    string username = (nameTxt.Text + lastnameTxt.Text).ToLower();
+                    string password = PasswordGenerate.GenerateRandomPassword(8);
+
                     // Insert data into the user table and retrieve the generated ID
                     SqlCommand userCmd = new SqlCommand(
                         "INSERT INTO [user] (name, last_name, gender, number, email, address) " +
@@ -47,8 +53,8 @@ namespace HospitalManagment
                     "INSERT INTO user_account(username, password, role_id) " +
                     "VALUES (@username, @password, @roleId); SELECT SCOPE_IDENTITY();", conn);
                     employeeAccCmd.Transaction = transaction;
-                    employeeAccCmd.Parameters.AddWithValue("@username", (nameTxt.Text + lastnameTxt.Text).ToLower());
-                    employeeAccCmd.Parameters.AddWithValue("@password", PasswordGenerate.GenerateRandomPassword(8));
+                    employeeAccCmd.Parameters.AddWithValue("@username", username);
+                    employeeAccCmd.Parameters.AddWithValue("@password", password);
                     employeeAccCmd.Parameters.AddWithValue("@roleId", 3);
 
                     int employeeAccId = Convert.ToInt32(employeeAccCmd.ExecuteScalar());
@@ -64,6 +70,36 @@ namespace HospitalManagment
 
                     transaction.Commit();
                     MessageBox.Show("Data inserted successfully.");
+
+                    string email = emailTxt.Text;
+
+                    try
+                    {
+                        SmtpClient smtpServer = new SmtpClient();
+                        MailMessage mail = new MailMessage();
+
+                        smtpServer.EnableSsl = true;
+                        smtpServer.UseDefaultCredentials = false;
+                        smtpServer.Credentials = new NetworkCredential("megi.xhafa2000@gmail.com", "ddvwpsmvrvbvvvwl");
+                        smtpServer.Port = 587;
+                        smtpServer.Host = "smtp.gmail.com";
+
+                        mail.From = new MailAddress("megi.xhafa2000@gmail.com");
+                        mail.To.Add(emailTxt.Text);
+                        mail.Subject = "";
+                        mail.IsBodyHtml = false;
+                        string body = "Your credentials" + Environment.NewLine +
+                                      "Username: " + username + Environment.NewLine +
+                                      "Password: " + password + Environment.NewLine;
+                        mail.Body = body;
+
+                        smtpServer.Send(mail);
+                        MessageBox.Show("Mail Sent.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
                 }
                 catch (Exception ex)
                 {
