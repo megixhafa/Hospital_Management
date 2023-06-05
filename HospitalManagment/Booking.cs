@@ -1,31 +1,13 @@
-﻿using HospitalManagment;
-using HospitalManagment.Models;
-using Microsoft.VisualBasic.ApplicationServices;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using HospitalManagment.Models;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
-using System.Windows.Forms;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using QRCoder;
-using System.Drawing;
-using System.IO;
-using ZXing;
-using ZXing.QrCode.Internal;
-using ZXing.QrCode;
-using ZXing.Common;
 using System.Net.Mail;
 using System.Net;
-
+using System.Drawing.Imaging;
+using System.Reflection.Metadata;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 namespace HospitalManagment
 {
     public partial class Booking : Form
@@ -247,13 +229,13 @@ namespace HospitalManagment
                         string email = reader["patient_email"].ToString();
 
                         string bookingData = $"Service: {serviceName} APPOINTMENT" + Environment.NewLine +
-                                               $"Patient: {patientName} {patientLastName}" + Environment.NewLine +
-                                               $"Doctor: {doctorName} {doctorLastName}" + Environment.NewLine +
-                                               $"Start Time: {startTime}";
+                                           $"Patient: {patientName} {patientLastName}" + Environment.NewLine +
+                                           $"Doctor: {doctorName} {doctorLastName}" + Environment.NewLine +
+                                           $"Start Time: {startTime}";
 
                         billTxt.Text = bookingData;
 
-                        // Create QR code generator
+                        // Use the same bookingData for QR code encoding
                         QRCodeGenerator qrGenerator = new QRCodeGenerator();
                         QRCodeData qrCodeData = qrGenerator.CreateQrCode(bookingData, QRCodeGenerator.ECCLevel.Q);
                         QRCoder.QRCode qrCode = new QRCoder.QRCode(qrCodeData);
@@ -326,6 +308,46 @@ namespace HospitalManagment
             {
                 MessageBox.Show("No QR code image found.");
             }
+        }
+
+        private void printBtn_Click(object sender, EventArgs e)
+        {
+            iTextSharp.text.Document document = new iTextSharp.text.Document();
+
+            // Set the file path for the PDF
+            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "appointment.pdf");
+
+            // Create a new FileStream to write the PDF file
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                // Create a new PdfWriter using the FileStream
+                PdfWriter writer = PdfWriter.GetInstance(document, fileStream);
+
+                // Open the PDF document for writing
+                document.Open();
+
+                // Create a new paragraph and add the text from the textbox
+                Paragraph paragraph = new Paragraph(billTxt.Text);
+
+                // Add the paragraph to the document
+                document.Add(paragraph);
+
+                // Check if the PictureBox has an image
+                if (QRBox.Image != null)
+                {
+                    // Convert the PictureBox image to iTextSharp's Image
+                    iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance((QRBox.Image as Bitmap), ImageFormat.Jpeg);
+
+                    // Add the image to the document
+                    document.Add(image);
+                }
+
+                // Close the document
+                document.Close();
+            }
+
+            MessageBox.Show("PDF downloaded successfully!");
+
         }
     }
 }

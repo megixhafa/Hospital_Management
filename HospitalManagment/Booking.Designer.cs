@@ -62,8 +62,9 @@
             this.bookingIdTxt = new System.Windows.Forms.TextBox();
             this.QRBox = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.printBtn = new System.Windows.Forms.Button();
             this.scanQR = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -112,7 +113,7 @@
             this.billTxt.Multiline = true;
             this.billTxt.Name = "billTxt";
             this.billTxt.ReadOnly = true;
-            this.billTxt.Size = new System.Drawing.Size(304, 208);
+            this.billTxt.Size = new System.Drawing.Size(294, 208);
             this.billTxt.TabIndex = 46;
             this.billTxt.UseSystemPasswordChar = true;
             // 
@@ -422,15 +423,18 @@
             // 
             // QRBox
             // 
-            this.QRBox.Location = new System.Drawing.Point(1108, 151);
+            this.QRBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.QRBox.Location = new System.Drawing.Point(344, 56);
             this.QRBox.Name = "QRBox";
-            this.QRBox.Size = new System.Drawing.Size(218, 208);
+            this.QRBox.Size = new System.Drawing.Size(214, 200);
             this.QRBox.TabIndex = 67;
             this.QRBox.TabStop = false;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.panel3.Controls.Add(this.printBtn);
+            this.panel3.Controls.Add(this.QRBox);
             this.panel3.Controls.Add(this.scanQR);
             this.panel3.Controls.Add(this.button1);
             this.panel3.Controls.Add(this.bookingIdTxt);
@@ -440,6 +444,38 @@
             this.panel3.Size = new System.Drawing.Size(585, 517);
             this.panel3.TabIndex = 68;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            // 
+            // printBtn
+            // 
+            this.printBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.printBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.printBtn.FlatAppearance.BorderSize = 0;
+            this.printBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.printBtn.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.printBtn.ForeColor = System.Drawing.Color.White;
+            this.printBtn.Location = new System.Drawing.Point(104, 265);
+            this.printBtn.Name = "printBtn";
+            this.printBtn.Size = new System.Drawing.Size(149, 50);
+            this.printBtn.TabIndex = 68;
+            this.printBtn.Text = "PRINT";
+            this.printBtn.UseVisualStyleBackColor = false;
+            this.printBtn.Click += new System.EventHandler(this.printBtn_Click);
+            // 
+            // scanQR
+            // 
+            this.scanQR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.scanQR.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.scanQR.FlatAppearance.BorderSize = 0;
+            this.scanQR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.scanQR.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.scanQR.ForeColor = System.Drawing.Color.White;
+            this.scanQR.Location = new System.Drawing.Point(372, 265);
+            this.scanQR.Name = "scanQR";
+            this.scanQR.Size = new System.Drawing.Size(149, 50);
+            this.scanQR.TabIndex = 67;
+            this.scanQR.Text = "SCAN QR";
+            this.scanQR.UseVisualStyleBackColor = false;
+            this.scanQR.Click += new System.EventHandler(this.scanQR_Click);
             // 
             // button1
             // 
@@ -457,25 +493,11 @@
             this.button1.Text = "X";
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // scanQR
-            // 
-            this.scanQR.Enabled = false;
-            this.scanQR.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.scanQR.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.scanQR.Location = new System.Drawing.Point(243, 368);
-            this.scanQR.Name = "scanQR";
-            this.scanQR.Size = new System.Drawing.Size(149, 50);
-            this.scanQR.TabIndex = 67;
-            this.scanQR.Text = "SCAN QR";
-            this.scanQR.UseVisualStyleBackColor = true;
-            this.scanQR.Click += new System.EventHandler(this.scanQR_Click);
-            // 
             // Booking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1352, 614);
-            this.Controls.Add(this.QRBox);
             this.Controls.Add(this.billBtn);
             this.Controls.Add(this.comboBox5);
             this.Controls.Add(this.label2);
@@ -548,5 +570,6 @@
         private Panel panel3;
         private Button button1;
         private Button scanQR;
+        private Button printBtn;
     }
 }
