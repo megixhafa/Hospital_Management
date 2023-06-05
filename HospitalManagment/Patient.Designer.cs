@@ -81,6 +81,7 @@
             this.logoutBtn.TabIndex = 3;
             this.logoutBtn.Text = "LOG OUT";
             this.logoutBtn.UseVisualStyleBackColor = true;
+            this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
             // 
             // pictureBox1
             // 
@@ -155,7 +156,6 @@
             this.lastnameTxt.Name = "lastnameTxt";
             this.lastnameTxt.Size = new System.Drawing.Size(243, 31);
             this.lastnameTxt.TabIndex = 11;
-            this.lastnameTxt.UseSystemPasswordChar = true;
             // 
             // nameTxt
             // 
@@ -200,7 +200,7 @@
             this.emailTxt.Name = "emailTxt";
             this.emailTxt.Size = new System.Drawing.Size(243, 31);
             this.emailTxt.TabIndex = 13;
-            this.emailTxt.UseSystemPasswordChar = true;
+            this.emailTxt.TextChanged += new System.EventHandler(this.emailTxt_TextChanged);
             // 
             // label2
             // 
@@ -222,7 +222,6 @@
             this.numberTxt.Name = "numberTxt";
             this.numberTxt.Size = new System.Drawing.Size(243, 31);
             this.numberTxt.TabIndex = 15;
-            this.numberTxt.UseSystemPasswordChar = true;
             // 
             // label5
             // 
@@ -245,7 +244,6 @@
             this.addressTxt.Name = "addressTxt";
             this.addressTxt.Size = new System.Drawing.Size(243, 31);
             this.addressTxt.TabIndex = 17;
-            this.addressTxt.UseSystemPasswordChar = true;
             // 
             // label6
             // 

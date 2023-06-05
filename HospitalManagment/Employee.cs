@@ -124,5 +124,12 @@ namespace HospitalManagment
         {
             Application.Exit();
         }
+
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            LoginForm login = new LoginForm();
+            login.Show();
+        }
     }
 }

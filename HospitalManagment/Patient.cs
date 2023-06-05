@@ -82,5 +82,17 @@ namespace HospitalManagment
             home.Show();
             this.Hide();
         }
+
+        private void emailTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            LoginForm login = new LoginForm();
+            login.Show();
+        }
     }
 }
