@@ -33,7 +33,7 @@
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
-            this.notesTxt = new System.Windows.Forms.TextBox();
+            this.billTxt = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label4 = new System.Windows.Forms.Label();
@@ -57,6 +57,9 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.billBtn = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.bookingIdTxt = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -95,16 +98,17 @@
             this.imageList2.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // notesTxt
+            // billTxt
             // 
-            this.notesTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.notesTxt.Location = new System.Drawing.Point(797, 152);
-            this.notesTxt.Margin = new System.Windows.Forms.Padding(4);
-            this.notesTxt.Multiline = true;
-            this.notesTxt.Name = "notesTxt";
-            this.notesTxt.Size = new System.Drawing.Size(529, 329);
-            this.notesTxt.TabIndex = 46;
-            this.notesTxt.UseSystemPasswordChar = true;
+            this.billTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.billTxt.Location = new System.Drawing.Point(797, 152);
+            this.billTxt.Margin = new System.Windows.Forms.Padding(4);
+            this.billTxt.Multiline = true;
+            this.billTxt.Name = "billTxt";
+            this.billTxt.ReadOnly = true;
+            this.billTxt.Size = new System.Drawing.Size(529, 329);
+            this.billTxt.TabIndex = 46;
+            this.billTxt.UseSystemPasswordChar = true;
             // 
             // label8
             // 
@@ -380,11 +384,42 @@
             this.label2.TabIndex = 62;
             this.label2.Text = "EQUIPMENT";
             // 
+            // billBtn
+            // 
+            this.billBtn.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.billBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.billBtn.Location = new System.Drawing.Point(1177, 532);
+            this.billBtn.Name = "billBtn";
+            this.billBtn.Size = new System.Drawing.Size(149, 50);
+            this.billBtn.TabIndex = 64;
+            this.billBtn.Text = "GET BILL";
+            this.billBtn.UseVisualStyleBackColor = true;
+            this.billBtn.Click += new System.EventHandler(this.billBtn_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // bookingIdTxt
+            // 
+            this.bookingIdTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.bookingIdTxt.Enabled = false;
+            this.bookingIdTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.bookingIdTxt.Location = new System.Drawing.Point(797, 450);
+            this.bookingIdTxt.Margin = new System.Windows.Forms.Padding(4);
+            this.bookingIdTxt.Name = "bookingIdTxt";
+            this.bookingIdTxt.Size = new System.Drawing.Size(32, 31);
+            this.bookingIdTxt.TabIndex = 66;
+            // 
             // Booking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1352, 614);
+            this.Controls.Add(this.bookingIdTxt);
+            this.Controls.Add(this.billBtn);
             this.Controls.Add(this.comboBox5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.numericUpDown1);
@@ -397,7 +432,7 @@
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.comboBox4);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.notesTxt);
+            this.Controls.Add(this.billTxt);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -422,7 +457,7 @@
         private ComboBox comboBox4;
         private Label label10;
         private ImageList imageList2;
-        private TextBox notesTxt;
+        private TextBox billTxt;
         private Label label8;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Label label4;
@@ -446,5 +481,8 @@
         private NumericUpDown numericUpDown1;
         private ComboBox comboBox5;
         private Label label2;
+        private Button billBtn;
+        private ContextMenuStrip contextMenuStrip1;
+        private TextBox bookingIdTxt;
     }
 }

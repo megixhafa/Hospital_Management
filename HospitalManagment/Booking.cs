@@ -2,6 +2,7 @@
 using HospitalManagment.Models;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Forms;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace HospitalManagment
 {
@@ -140,11 +142,11 @@ namespace HospitalManagment
                     int serviceId = Convert.ToInt32(service.ExecuteScalar());
 
                     SqlCommand equipment = new SqlCommand("SELECT id FROM equipment WHERE name = @name", conn);
-                    equipment.Transaction = transaction; 
+                    equipment.Transaction = transaction;
                     equipment.Parameters.AddWithValue("@name", comboBox5.Text);
                     int equipmentId = Convert.ToInt32(equipment.ExecuteScalar());
 
-                    // Insert data into the user table and retrieve the generated ID
+                    // Insert data into the booking table and retrieve the generated ID
                     SqlCommand bookingCmd = new SqlCommand(
                         "INSERT INTO booking (doctor_id, patient_id, service_id, equipment_id, has_priority, start_time, end_time) " +
                         "VALUES (@doctor_id, @patient_id, @service_id, @equipment_id, @has_priority, @start_time, @end_time); SELECT SCOPE_IDENTITY();", conn);
@@ -154,12 +156,16 @@ namespace HospitalManagment
                     bookingCmd.Parameters.AddWithValue("@service_id", serviceId);
                     bookingCmd.Parameters.AddWithValue("@equipment_id", equipmentId);
                     bookingCmd.Parameters.AddWithValue("@has_priority", comboBox3.Text);
-                    bookingCmd.Parameters.AddWithValue("@start_time", selectedTime);
+                    bookingCmd.Parameters.AddWithValue("@start_time", startTime);
                     bookingCmd.Parameters.AddWithValue("@end_time", endTime);
-                    bookingCmd.ExecuteNonQuery();
+                    int bookingId = Convert.ToInt32(bookingCmd.ExecuteScalar());
 
                     transaction.Commit();
+
+                    bookingIdTxt.Text = bookingId.ToString();
+
                     MessageBox.Show("Data inserted successfully.");
+                
                 }
                 catch (Exception ex)
                 {
@@ -185,6 +191,72 @@ namespace HospitalManagment
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void billBtn_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection conn = DatabaseManager.GetConnection())
+            {
+                conn.Open();
+                SqlTransaction transaction = conn.BeginTransaction();
+
+                try
+                {
+                    // Retrieve the booking details based on the generated booking ID
+                    string query = @"
+                        SELECT
+                            u_patient.name AS patient_name,
+                            u_patient.last_name AS patient_last_name,
+                            u_doctor.name AS doctor_name,
+                            u_doctor.last_name AS doctor_last_name,
+                            b.start_time,
+                            s.name AS service_name
+                        FROM
+                            booking AS b
+                            INNER JOIN patient AS p ON b.patient_id = p.id
+                            INNER JOIN [user] AS u_patient ON p.user_id = u_patient.id
+                            INNER JOIN doctor AS d ON b.doctor_id = d.id
+                            INNER JOIN [user] AS u_doctor ON d.user_id = u_doctor.id
+                            INNER JOIN service AS s ON b.service_id = s.id
+                        WHERE
+                            b.id = @bookingId";
+
+                    SqlCommand command = new SqlCommand(query, conn, transaction);
+                    command.Parameters.AddWithValue("@bookingId", Convert.ToInt32(bookingIdTxt.Text));
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        string patientName = reader["patient_name"].ToString();
+                        string patientLastName = reader["patient_last_name"].ToString();
+                        string doctorName = reader["doctor_name"].ToString();
+                        string doctorLastName = reader["doctor_last_name"].ToString();
+                        string startTime = reader["start_time"].ToString();
+                        string serviceName = reader["service_name"].ToString().ToUpper();
+
+                        string formattedData = $"Service: {serviceName} APPOINTMENT" + Environment.NewLine +
+                                               $"Patient: {patientName} {patientLastName}" + Environment.NewLine +
+                                               $"Doctor: {doctorName} {doctorLastName}" + Environment.NewLine +
+                                               $"Start Time: {startTime}";
+                                               
+
+                        billTxt.Text = formattedData;
+                    }
+
+                    reader.Close();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show("Error generating the perscription: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
 
         }
     }
