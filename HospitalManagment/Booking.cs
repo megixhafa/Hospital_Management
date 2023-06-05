@@ -16,6 +16,15 @@ using System.Transactions;
 using System.Windows.Forms;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using QRCoder;
+using System.Drawing;
+using System.IO;
+using ZXing;
+using ZXing.QrCode.Internal;
+using ZXing.QrCode;
+using ZXing.Common;
+using System.Net.Mail;
+using System.Net;
 
 namespace HospitalManagment
 {
@@ -205,22 +214,23 @@ namespace HospitalManagment
                 {
                     // Retrieve the booking details based on the generated booking ID
                     string query = @"
-                        SELECT
-                            u_patient.name AS patient_name,
-                            u_patient.last_name AS patient_last_name,
-                            u_doctor.name AS doctor_name,
-                            u_doctor.last_name AS doctor_last_name,
-                            b.start_time,
-                            s.name AS service_name
-                        FROM
-                            booking AS b
-                            INNER JOIN patient AS p ON b.patient_id = p.id
-                            INNER JOIN [user] AS u_patient ON p.user_id = u_patient.id
-                            INNER JOIN doctor AS d ON b.doctor_id = d.id
-                            INNER JOIN [user] AS u_doctor ON d.user_id = u_doctor.id
-                            INNER JOIN service AS s ON b.service_id = s.id
-                        WHERE
-                            b.id = @bookingId";
+            SELECT
+                u_patient.name AS patient_name,
+                u_patient.last_name AS patient_last_name,
+                u_doctor.name AS doctor_name,
+                u_doctor.last_name AS doctor_last_name,
+                b.start_time,
+                s.name AS service_name,
+                u_patient.email AS patient_email
+            FROM
+                booking AS b
+                INNER JOIN patient AS p ON b.patient_id = p.id
+                INNER JOIN [user] AS u_patient ON p.user_id = u_patient.id
+                INNER JOIN doctor AS d ON b.doctor_id = d.id
+                INNER JOIN [user] AS u_doctor ON d.user_id = u_doctor.id
+                INNER JOIN service AS s ON b.service_id = s.id
+            WHERE
+                b.id = @bookingId";
 
                     SqlCommand command = new SqlCommand(query, conn, transaction);
                     command.Parameters.AddWithValue("@bookingId", Convert.ToInt32(bookingIdTxt.Text));
@@ -234,14 +244,56 @@ namespace HospitalManagment
                         string doctorLastName = reader["doctor_last_name"].ToString();
                         string startTime = reader["start_time"].ToString();
                         string serviceName = reader["service_name"].ToString().ToUpper();
+                        string email = reader["patient_email"].ToString();
 
-                        string formattedData = $"Service: {serviceName} APPOINTMENT" + Environment.NewLine +
+                        string bookingData = $"Service: {serviceName} APPOINTMENT" + Environment.NewLine +
                                                $"Patient: {patientName} {patientLastName}" + Environment.NewLine +
                                                $"Doctor: {doctorName} {doctorLastName}" + Environment.NewLine +
                                                $"Start Time: {startTime}";
-                                               
 
-                        billTxt.Text = formattedData;
+                        billTxt.Text = bookingData;
+
+                        // Create QR code generator
+                        QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                        QRCodeData qrCodeData = qrGenerator.CreateQrCode(bookingData, QRCodeGenerator.ECCLevel.Q);
+                        QRCoder.QRCode qrCode = new QRCoder.QRCode(qrCodeData);
+
+                        // Convert QR code to bitmap image
+                        Bitmap qrCodeImage = qrCode.GetGraphic(3);
+
+                        QRBox.Image = qrCodeImage;
+
+                        // Save the QR code image to a memory stream
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                            ms.Seek(0, SeekOrigin.Begin);
+
+                            // Create a new MailMessage instance
+                            MailMessage mail = new MailMessage();
+
+                            // Set the sender and recipient addresses
+                            mail.From = new MailAddress("megi.xhafa2000@gmail.com");
+                            mail.To.Add(email);
+
+                            // Set the subject and body of the email
+                            mail.Subject = "Your Appointment Details";
+                            mail.IsBodyHtml = false;
+                            mail.Body = "Your appointment details:" + Environment.NewLine + billTxt.Text;
+
+                            // Attach the image from the memory stream
+                            Attachment attachment = new Attachment(ms, "QRCode.png", "image/png");
+                            mail.Attachments.Add(attachment);
+
+                            // Send the email using SmtpClient
+                            SmtpClient smtpServer = new SmtpClient("smtp.gmail.com", 587);
+                            smtpServer.EnableSsl = true;
+                            smtpServer.UseDefaultCredentials = false;
+                            smtpServer.Credentials = new NetworkCredential("megi.xhafa2000@gmail.com", "ddvwpsmvrvbvvvwl");
+
+                            smtpServer.Send(mail);
+                            MessageBox.Show("Mail Sent.");
+                        }
                     }
 
                     reader.Close();
@@ -249,8 +301,7 @@ namespace HospitalManagment
                 }
                 catch (Exception ex)
                 {
-                    transaction.Rollback();
-                    MessageBox.Show("Error generating the perscription: " + ex.Message);
+                    MessageBox.Show("Error generating the prescription: " + ex.Message);
                 }
                 finally
                 {
@@ -258,6 +309,23 @@ namespace HospitalManagment
                 }
             }
 
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void scanQR_Click(object sender, EventArgs e)
+        {
+            if (QRBox.Image != null)
+            {
+                MessageBox.Show("QR Scanned!");
+            }
+            else
+            {
+                MessageBox.Show("No QR code image found.");
+            }
         }
     }
 }

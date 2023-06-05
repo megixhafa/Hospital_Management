@@ -60,10 +60,16 @@
             this.billBtn = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.bookingIdTxt = new System.Windows.Forms.TextBox();
+            this.QRBox = new System.Windows.Forms.PictureBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.scanQR = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.QRBox)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox4
@@ -101,20 +107,21 @@
             // billTxt
             // 
             this.billTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.billTxt.Location = new System.Drawing.Point(797, 152);
+            this.billTxt.Location = new System.Drawing.Point(29, 53);
             this.billTxt.Margin = new System.Windows.Forms.Padding(4);
             this.billTxt.Multiline = true;
             this.billTxt.Name = "billTxt";
             this.billTxt.ReadOnly = true;
-            this.billTxt.Size = new System.Drawing.Size(529, 329);
+            this.billTxt.Size = new System.Drawing.Size(304, 208);
             this.billTxt.TabIndex = 46;
             this.billTxt.UseSystemPasswordChar = true;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
             this.label8.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.label8.ForeColor = System.Drawing.Color.White;
             this.label8.Location = new System.Drawing.Point(797, 124);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
@@ -150,7 +157,7 @@
             // 
             this.addbtn.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.addbtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.addbtn.Location = new System.Drawing.Point(595, 431);
+            this.addbtn.Location = new System.Drawing.Point(595, 466);
             this.addbtn.Name = "addbtn";
             this.addbtn.Size = new System.Drawing.Size(149, 50);
             this.addbtn.TabIndex = 32;
@@ -388,7 +395,7 @@
             // 
             this.billBtn.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.billBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.billBtn.Location = new System.Drawing.Point(1177, 532);
+            this.billBtn.Location = new System.Drawing.Point(1177, 466);
             this.billBtn.Name = "billBtn";
             this.billBtn.Size = new System.Drawing.Size(149, 50);
             this.billBtn.TabIndex = 64;
@@ -407,18 +414,68 @@
             this.bookingIdTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.bookingIdTxt.Enabled = false;
             this.bookingIdTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
-            this.bookingIdTxt.Location = new System.Drawing.Point(797, 450);
+            this.bookingIdTxt.Location = new System.Drawing.Point(526, 18);
             this.bookingIdTxt.Margin = new System.Windows.Forms.Padding(4);
             this.bookingIdTxt.Name = "bookingIdTxt";
             this.bookingIdTxt.Size = new System.Drawing.Size(32, 31);
             this.bookingIdTxt.TabIndex = 66;
+            // 
+            // QRBox
+            // 
+            this.QRBox.Location = new System.Drawing.Point(1108, 151);
+            this.QRBox.Name = "QRBox";
+            this.QRBox.Size = new System.Drawing.Size(218, 208);
+            this.QRBox.TabIndex = 67;
+            this.QRBox.TabStop = false;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.panel3.Controls.Add(this.scanQR);
+            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.bookingIdTxt);
+            this.panel3.Controls.Add(this.billTxt);
+            this.panel3.Location = new System.Drawing.Point(768, 98);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(585, 517);
+            this.panel3.TabIndex = 68;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft JhengHei", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(1130, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(30, 30);
+            this.button1.TabIndex = 59;
+            this.button1.Text = "X";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // scanQR
+            // 
+            this.scanQR.Enabled = false;
+            this.scanQR.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.scanQR.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(97)))), ((int)(((byte)(101)))));
+            this.scanQR.Location = new System.Drawing.Point(243, 368);
+            this.scanQR.Name = "scanQR";
+            this.scanQR.Size = new System.Drawing.Size(149, 50);
+            this.scanQR.TabIndex = 67;
+            this.scanQR.Text = "SCAN QR";
+            this.scanQR.UseVisualStyleBackColor = true;
+            this.scanQR.Click += new System.EventHandler(this.scanQR_Click);
             // 
             // Booking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1352, 614);
-            this.Controls.Add(this.bookingIdTxt);
+            this.Controls.Add(this.QRBox);
             this.Controls.Add(this.billBtn);
             this.Controls.Add(this.comboBox5);
             this.Controls.Add(this.label2);
@@ -432,13 +489,13 @@
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.comboBox4);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.billTxt);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.addbtn);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Booking";
             this.Text = "Booking";
@@ -448,6 +505,9 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.QRBox)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -484,5 +544,9 @@
         private Button billBtn;
         private ContextMenuStrip contextMenuStrip1;
         private TextBox bookingIdTxt;
+        private PictureBox QRBox;
+        private Panel panel3;
+        private Button button1;
+        private Button scanQR;
     }
 }
