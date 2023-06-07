@@ -293,5 +293,139 @@ namespace HospitalManagment
         {
 
         }
+
+        private void searchBtn_Click(object sender, EventArgs e)
+        {
+            string selectedSearch = GetSelectedTableName();
+
+            switch (selectedSearch)
+            {
+                case "doctor":
+                    DoctorSearch();
+                    break;
+
+                case "patient":
+                    PatientSearch();
+                    break;
+
+                case "employee":
+                    EmployeeSearch();
+                    break;
+
+                case "equipment":
+                    ServiceSearch();
+                    break;
+
+                case "booking":
+                    BookingSearch();
+                    break;
+
+                default:
+                    // Handle the case where no table is selected or unsupported table
+                    MessageBox.Show("No table selected or unsupported table.");
+                    break;
+            }
+        }
+
+        
+        private void DoctorSearch()
+        {
+            string searchValue = searchTxt.Text;
+
+
+            if (dgv.DataSource is DataTable dataTable)
+            {
+                string rowFilter = string.Empty;
+                foreach (DataColumn column in dataTable.Columns)
+                {
+                    if (!string.IsNullOrEmpty(rowFilter))
+                        rowFilter += " OR ";
+                    rowFilter += $"CONVERT([{column.ColumnName}], System.String) LIKE '%{searchValue}%'";
+                }
+
+                dataTable.DefaultView.RowFilter = rowFilter;
+                dgv.ClearSelection();
+            }
+        }
+
+        private void PatientSearch()
+        {
+            string searchValue = searchTxt.Text;
+
+
+            if (dgv.DataSource is DataTable dataTable)
+            {
+                string rowFilter = string.Empty;
+                foreach (DataColumn column in dataTable.Columns)
+                {
+                    if (!string.IsNullOrEmpty(rowFilter))
+                        rowFilter += " OR ";
+                    rowFilter += $"CONVERT([{column.ColumnName}], System.String) LIKE '%{searchValue}%'";
+                }
+
+                dataTable.DefaultView.RowFilter = rowFilter;
+                dgv.ClearSelection();
+            }
+        }
+
+        private void BookingSearch()
+        {
+            string searchValue = searchTxt.Text;
+
+
+            if (dgv.DataSource is DataTable dataTable)
+            {
+                string rowFilter = string.Empty;
+                foreach (DataColumn column in dataTable.Columns)
+                {
+                    if (!string.IsNullOrEmpty(rowFilter))
+                        rowFilter += " OR ";
+                    rowFilter += $"CONVERT([{column.ColumnName}], System.String) LIKE '%{searchValue}%'";
+                }
+
+                dataTable.DefaultView.RowFilter = rowFilter;
+                dgv.ClearSelection();
+            }
+        }
+
+        private void EquipmentSearch()
+        {
+            string searchValue = searchTxt.Text;
+
+
+            if (dgv.DataSource is DataTable dataTable)
+            {
+                string rowFilter = string.Empty;
+                foreach (DataColumn column in dataTable.Columns)
+                {
+                    if (!string.IsNullOrEmpty(rowFilter))
+                        rowFilter += " OR ";
+                    rowFilter += $"CONVERT([{column.ColumnName}], System.String) LIKE '%{searchValue}%'";
+                }
+
+                dataTable.DefaultView.RowFilter = rowFilter;
+                dgv.ClearSelection();
+            }
+        }
+
+        private void EmployeeSearch()
+        {
+            string searchValue = searchTxt.Text;
+
+
+            if (dgv.DataSource is DataTable dataTable)
+            {
+                string rowFilter = string.Empty;
+                foreach (DataColumn column in dataTable.Columns)
+                {
+                    if (!string.IsNullOrEmpty(rowFilter))
+                        rowFilter += " OR ";
+                    rowFilter += $"CONVERT([{column.ColumnName}], System.String) LIKE '%{searchValue}%'";
+                }
+
+                dataTable.DefaultView.RowFilter = rowFilter;
+                dgv.ClearSelection();
+            }
+        }
     }
 }

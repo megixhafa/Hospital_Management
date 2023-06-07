@@ -154,6 +154,7 @@
             this.searchBtn.Size = new System.Drawing.Size(65, 37);
             this.searchBtn.TabIndex = 5;
             this.searchBtn.UseVisualStyleBackColor = false;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // equipmentBtn
             // 

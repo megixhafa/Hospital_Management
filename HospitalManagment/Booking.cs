@@ -115,6 +115,7 @@ namespace HospitalManagment
                     string hourMinute = selectedTime.ToString("hh\\:mm");
 
                     var minutesToAdd = (int)numericUpDown1.Value;
+
                     DateTime endTime = startTime.AddMinutes(minutesToAdd);
 
                     SqlCommand doctor = new SqlCommand("SELECT d.id FROM doctor d INNER JOIN [user] u ON u.id = d.user_id WHERE u.name = @name", conn);

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using HospitalManagment.Models;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Data.SqlClient;
+using System;
+using System.Data;
+using Steema.TeeChart;
+using Steema.TeeChart.Styles;
+using System.Data.SqlClient;
+
 
 namespace HospitalManagment
 {
@@ -28,5 +28,18 @@ namespace HospitalManagment
             LoginForm login = new LoginForm();
             login.Show();
         }
+
+        private void BookingTimetable_Load(object sender, EventArgs e)
+        {
+            LoadChart();
+        }
+
+        private void LoadChart()
+        {
+
+
+        }
+
+
     }
 }

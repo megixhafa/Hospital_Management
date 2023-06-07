@@ -39,7 +39,6 @@
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -132,24 +131,18 @@
             this.panel1.Size = new System.Drawing.Size(195, 668);
             this.panel1.TabIndex = 51;
             // 
-            // monthCalendar1
-            // 
-            this.monthCalendar1.Location = new System.Drawing.Point(852, 453);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 53;
-            // 
             // BookingTimetable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1352, 614);
             this.ControlBox = false;
-            this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "BookingTimetable";
             this.Text = "BookingTimetable";
+            this.Load += new System.EventHandler(this.BookingTimetable_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -169,6 +162,5 @@
         private ImageList imageList2;
         private ImageList imageList1;
         private Panel panel1;
-        private MonthCalendar monthCalendar1;
     }
 }
